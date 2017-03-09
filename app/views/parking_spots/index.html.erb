@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Parking Spots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Occupied</th>
+      <th>Reservable</th>
+      <th>Reserved</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parking_spots.each do |parking_spot| %>
+      <tr>
+        <td><%= parking_spot.name %></td>
+        <td><%= parking_spot.occupied %></td>
+        <td><%= parking_spot.reservable %></td>
+        <td><%= parking_spot.reserved %></td>
+        <td><%= link_to 'Show', parking_spot %></td>
+        <td><%= link_to 'Edit', edit_parking_spot_path(parking_spot) %></td>
+        <td><%= link_to 'Destroy', parking_spot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Parking spot', new_parking_spot_path %>
