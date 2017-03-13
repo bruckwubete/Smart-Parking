@@ -1,3 +1,41 @@
-<h1>
-  {{title}}
-</h1>
+<div fxLayout="row" class="component_dashboard">
+    <div  fxLayout="column">
+        <img src="../../assets/images/component_dashboard.jpg" alt="smart parking dashboard image" fxFlexFill>
+    </div>
+</div>
+<div fxLayout="column" fxLayoutAlign="center" fxFlexAlign="center" class="parking_lot">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <md-card fxFlex="75" class="parking_lot_card">
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <form class="example-form">
+                  <md-input-container>
+                    <input mdInput placeholder="Search">
+                  </md-input-container>
+                </form>
+            </div>
+            <md-grid-list cols="4" rowHeight="100px">
+              <md-grid-tile
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background]="tile.color">
+                {{tile.text}}
+              </md-grid-tile>
+              <md-grid-tile
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background]="tile.color">
+                {{tile.text}}
+              </md-grid-tile>
+              <md-grid-tile
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background]="tile.color">
+                {{tile.text}}
+              </md-grid-tile> 
+            </md-grid-list>
+        </md-card>
+    </div>
+</div>
