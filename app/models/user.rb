@@ -1,10 +1,25 @@
 class User
+   # Get rid of devise-token_auth issues from activerecord
+  def self.table_exists?
+    true
+  end
+
+  def self.columns_hash
+    # Just fake it for devise-token-auth; since this model is schema-less, this method is not really useful otherwise
+    {} # An empty hash, so tokens_has_json_column_type will return false, which is probably what you want for Monogoid/BSON
+  end
+
+  def self.serialize(*args)
+
+  end
   include Mongoid::Document
+  #include DeviseTokenAuth::Concerns::User
+  include Mongoid::Timestamps::Short
   has_one :qr_code
   validates_uniqueness_of :email, :username
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :omniauthable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
@@ -17,6 +32,13 @@ class User
 
   ## Rememberable
   field :remember_created_at, type: Time
+  
+  ## unique oauth id
+  field :provider, type: String
+  field :uid, default: ""
+  
+  #Tokens
+  field :tokens, type: Hash, default: { }
 
   ## Trackable
   field :sign_in_count,      type: Integer, default: 0
@@ -26,15 +48,16 @@ class User
   field :last_sign_in_ip,    type: String
 
   ## Confirmable
-  # field :confirmation_token,   type: String
-  # field :confirmed_at,         type: Time
-  # field :confirmation_sent_at, type: Time
-  # field :unconfirmed_email,    type: String # Only if using reconfirmable
+   field :confirmation_token,   type: String
+   field :confirmed_at,         type: Time
+   field :confirmation_sent_at, type: Time
+   field :unconfirmed_email,    type: String # Only if using reconfirmable
 
   ## Lockable
-  # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
-  # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
-  # field :locked_at,       type: Time
+   field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
+   field :unlock_token,    type: String # Only if unlock strategy is :email or :both
+   field :locked_at,       type: Time
+   field :with_lock,       type: String, default: ""
   
   ## User Info
   field :username, type: String, default: ""

@@ -12,11 +12,16 @@ Rails.application.configure do
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
-
+  config.action_mailer.default_url_options = { :host => 'http://smart-parking-bruck.c9users.io:8081' }
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: 'key-29796a58b2ad1ef4247fcfdbd8289c27',
+    domain: 'sandbox35501bb74b754c4aa6fe071f94963720.mailgun.org'
+  }
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
   
-  config.action_mailer.default_url_options = { host: 'localhost', port: 8080 }
+  #config.action_mailer.default_url_options = { host: 'localhost', port: 8080 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
