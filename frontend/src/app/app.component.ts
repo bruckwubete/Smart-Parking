@@ -21,16 +21,16 @@ export class AppComponent {
         apiPath:                    'auth',
 
         signInPath:                 'sign_in',
-        signInRedirect:             null,
+        signInRedirect:             '/parking_lot',
         signInStoredUrlStorageKey:  null,
 
         signOutPath:                'sign_out',
-        validateTokenPath:          'auth/validate_token',
+        validateTokenPath:          'validate_token',
         signOutFailedValidate:      false,
         
         registerAccountPath:        '',
-        deleteAccountPath:          'auth',
-        registerAccountCallback:    window.location.href,
+        deleteAccountPath:          '',
+        registerAccountCallback:    'https://smart-parking-bruck.c9users.io:8080/session/sign-in',
 
         globalOptions: {
             headers: {

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'User', at: 'auth'
+  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
   resources :parking_lots
   resources :parking_spots
   # The priority is based upon order of creation: first created -> highest priority.

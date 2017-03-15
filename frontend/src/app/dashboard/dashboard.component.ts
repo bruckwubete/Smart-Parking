@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  
+  mouseOver1;
+  mouseOver2;
+  mouseOver3;
+  clicked1;
+  clicked2;
+  clicked3;
 
   constructor() { }
 
   ngOnInit() {
+  }
+  
+  navigate(input){
+    console.log("input");
+    this.clicked1 = true;
   }
   
    tiles = [

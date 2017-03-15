@@ -17,10 +17,14 @@ class User
   include Mongoid::Timestamps::Short
   has_one :qr_code
   validates_uniqueness_of :email, :username
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
+         
+  include DeviseTokenAuth::Concerns::User
+
 
   ## Database authenticatable
   field :email,              type: String, default: ""
@@ -54,10 +58,10 @@ class User
    field :unconfirmed_email,    type: String # Only if using reconfirmable
 
   ## Lockable
-   field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
-   field :unlock_token,    type: String # Only if unlock strategy is :email or :both
-   field :locked_at,       type: Time
-   field :with_lock,       type: String, default: ""
+   #field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
+   #field :unlock_token,    type: String # Only if unlock strategy is :email or :both
+  # field :locked_at,       type: Time
+  # field :with_lock,       type: String, default: ""
   
   ## User Info
   field :username, type: String, default: ""

@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
-  skip_before_action :verify_authenticity_token
+  #skip_before_action :verify_authenticity_token
+  include DeviseTokenAuth::Concerns::SetUserByToken
   
   wrap_parameters false
-  include DeviseTokenAuth::Concerns::SetUserByToken
+  #include DeviseTokenAuth::Concerns::SetUserByToken
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

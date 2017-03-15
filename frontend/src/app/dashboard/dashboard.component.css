@@ -10,3 +10,11 @@
 .parking_lot_card{
     background-color: white;
 }
+
+md-sidenav {
+  width: 15%;
+}
+
+.smart_parking_menu_list_item{
+   background-color: rgb(242, 242, 242);
+}

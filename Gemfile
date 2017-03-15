@@ -8,11 +8,14 @@ gem 'sqlite3'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'devise_token_auth', github: 'ybian/devise_token_auth', branch: 'mongoid'
+gem 'devise', '~> 3.4.1'
 gem 'httparty'
 gem 'rqrcode'
 gem 'omniauth'
 gem 'mailgun_rails'
 gem "mongo_session_store-rails4"
+
+gem 'rack-cors', :require => 'rack/cors'
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'database_cleaner'

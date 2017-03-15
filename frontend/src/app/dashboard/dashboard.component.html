@@ -1,41 +1,63 @@
-<div fxLayout="row" class="component_dashboard">
-    <div  fxLayout="column">
-        <img src="../../assets/images/component_dashboard.jpg" alt="smart parking dashboard image" fxFlexFill>
+
+
+<md-sidenav-container  fullscreen>
+  <md-sidenav #sidenav mode="side" opened="true">
+    <!-- sidenav content -->
+    <md-list>
+     <md-list-item (click) = "navigate(pepper)" (mouseover) = "mouseOver1 = true" (mouseleave) = "mouseOver1 = false" 
+                   [ngClass]="{smart_parking_menu_list_item : mouseOver1 || clicked1}"> <span fxFlex="5"></span> Pepper </md-list-item>
+  
+     <md-list-item (mouseover) = "mouseOver2 = true" (mouseleave) = "mouseOver2 = false" 
+                   [ngClass]="{smart_parking_menu_list_item : mouseOver2 || clicked2}"> <span fxFlex="5"></span> Salt </md-list-item>
+    
+     <md-list-item (mouseover) = "mouseOver3 = true" (mouseleave) = "mouseOver3 = false" 
+                   [ngClass]="{smart_parking_menu_list_item : mouseOver3 || clicked3}"> <span fxFlex="5"></span> Paprika </md-list-item>
+    
+    </md-list>
+  </md-sidenav>
+
+  <!-- primary content -->
+
+    <div fxLayout="row" class="component_dashboard">
+      <div  fxLayout="column">
+          <img src="../../assets/images/component_dashboard.jpg" alt="smart parking dashboard image" fxFlexFill>
+      </div>
     </div>
-</div>
-<div fxLayout="column" fxLayoutAlign="center" fxFlexAlign="center" class="parking_lot">
-    <div fxLayout="row" fxLayoutAlign="center center">
-        <md-card fxFlex="75" class="parking_lot_card">
-            <div fxLayout="row" fxLayoutAlign="center center">
-                <form class="example-form">
-                  <md-input-container>
-                    <input mdInput placeholder="Search">
-                  </md-input-container>
-                </form>
-            </div>
-            <md-grid-list cols="4" rowHeight="100px">
-              <md-grid-tile
-                *ngFor="let tile of tiles"
-                [colspan]="tile.cols"
-                [rowspan]="tile.rows"
-                [style.background]="tile.color">
-                {{tile.text}}
-              </md-grid-tile>
-              <md-grid-tile
-                *ngFor="let tile of tiles"
-                [colspan]="tile.cols"
-                [rowspan]="tile.rows"
-                [style.background]="tile.color">
-                {{tile.text}}
-              </md-grid-tile>
-              <md-grid-tile
-                *ngFor="let tile of tiles"
-                [colspan]="tile.cols"
-                [rowspan]="tile.rows"
-                [style.background]="tile.color">
-                {{tile.text}}
-              </md-grid-tile> 
-            </md-grid-list>
-        </md-card>
+    <div fxLayout="column" fxLayoutAlign="center" fxFlexAlign="center" class="parking_lot">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <md-card fxFlex="75" class="parking_lot_card">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <form class="example-form">
+                      <md-input-container>
+                        <input mdInput placeholder="Search">
+                      </md-input-container>
+                    </form>
+                </div>
+                <md-grid-list cols="4" rowHeight="100px">
+                  <md-grid-tile
+                    *ngFor="let tile of tiles"
+                    [colspan]="tile.cols"
+                    [rowspan]="tile.rows"
+                    [style.background]="tile.color">
+                    {{tile.text}}
+                  </md-grid-tile>
+                  <md-grid-tile
+                    *ngFor="let tile of tiles"
+                    [colspan]="tile.cols"
+                    [rowspan]="tile.rows"
+                    [style.background]="tile.color">
+                    {{tile.text}}
+                  </md-grid-tile>
+                  <md-grid-tile
+                    *ngFor="let tile of tiles"
+                    [colspan]="tile.cols"
+                    [rowspan]="tile.rows"
+                    [style.background]="tile.color">
+                    {{tile.text}}
+                  </md-grid-tile> 
+                </md-grid-list>
+            </md-card>
+        </div>
     </div>
-</div>
+    <button md-button (click)="sidenav.toggle()">Sidenav Toggle</button>
+</md-sidenav-container>
