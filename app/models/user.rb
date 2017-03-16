@@ -24,6 +24,26 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
          
   include DeviseTokenAuth::Concerns::User
+  
+  after_create do
+      @qr_code = QrCode.new
+       barcode = RQRCode::QRCode.new(self.id.to_s)
+       png = barcode.as_png(
+           resize_gte_to: false,
+           resize_exactly_to: false,
+           fill: 'white',
+           color: 'black',
+           size: 500,
+           border_modules: 4,
+           module_px_size: 10,
+           file: nil # path to write
+           )
+       @qr_code.barcode_path =  'public/qr_codes/' + self.id.to_s
+       @qr_code.save!
+       self.qr_code = @qr_code
+       self.save!
+       File.open( @qr_code.barcode_path + '.png', 'wb') {|f| f.write png }
+  end
 
 
   ## Database authenticatable

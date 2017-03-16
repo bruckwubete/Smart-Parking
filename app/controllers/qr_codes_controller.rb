@@ -1,4 +1,4 @@
-class QrCodEsController < ApplicationController
+class QrCodesController < ApplicationController
   before_action :set_qr_code, only: [:show, :edit, :update, :destroy]
 
   # GET /qr_codes
@@ -10,6 +10,7 @@ class QrCodEsController < ApplicationController
   # GET /qr_codes/1
   # GET /qr_codes/1.json
   def show
+    @data = Base64.encode64(File.read(@qr_code.barcode_path  + '.png')).gsub("\n", '')
   end
 
   # GET /qr_codes/new
