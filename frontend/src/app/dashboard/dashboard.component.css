@@ -18,3 +18,10 @@ md-sidenav {
 .smart_parking_menu_list_item{
    background-color: rgb(242, 242, 242);
 }
+.sp_height_break{
+    height: 25px;
+}
+
+.spRegularParking{
+   background-color: black !important;
+}

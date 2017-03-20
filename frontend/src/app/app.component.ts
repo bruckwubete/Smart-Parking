@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import {Angular2TokenService } from 'angular2-token';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import {Angular2TokenService } from 'angular2-token';
 })
 export class AppComponent {
   title = 'app works!';
-  books = {};
+  public books;
   fullImagePath: string;
   constructor(private http: Http, private _tokenService : Angular2TokenService) {
     //http.get('https://smart-parking-bruck.c9users.io:8081/books')

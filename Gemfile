@@ -14,6 +14,7 @@ gem 'rqrcode'
 gem 'omniauth'
 gem 'mailgun_rails'
 gem "mongo_session_store-rails4"
+gem 'delayed_job_mongoid'
 
 gem 'rack-cors', :require => 'rack/cors'
 group :development, :test do

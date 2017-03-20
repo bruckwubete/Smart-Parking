@@ -33,29 +33,26 @@
                       </md-input-container>
                     </form>
                 </div>
-                <md-grid-list cols="4" rowHeight="100px">
-                  <md-grid-tile
-                    *ngFor="let tile of tiles"
-                    [colspan]="tile.cols"
-                    [rowspan]="tile.rows"
-                    [style.background]="tile.color">
-                    {{tile.text}}
-                  </md-grid-tile>
-                  <md-grid-tile
-                    *ngFor="let tile of tiles"
-                    [colspan]="tile.cols"
-                    [rowspan]="tile.rows"
-                    [style.background]="tile.color">
-                    {{tile.text}}
-                  </md-grid-tile>
-                  <md-grid-tile
-                    *ngFor="let tile of tiles"
-                    [colspan]="tile.cols"
-                    [rowspan]="tile.rows"
-                    [style.background]="tile.color">
-                    {{tile.text}}
-                  </md-grid-tile> 
+                
+                <md-grid-list cols="18" rowHeight="150">
+                  <md-grid-tile></md-grid-tile> 
+                  <ng-container *ngFor="let lot of parking_spots; let i = index">
+                    <md-grid-tile colspan="2" [style.background]="lightblue" *ngIf="!lot.reservable">{{lot.name}}</md-grid-tile>
+                  </ng-container>
                 </md-grid-list>
+                <div fxFlex>
+                  
+                  <div fxFlex="12" fxFlexOffset="84">
+                   <md-grid-list cols="1" rowHeight="150" rowspan="1">
+                    <md-grid-tile></md-grid-tile>
+                    <ng-container *ngFor="let lot of parking_spots">
+                    <md-grid-tile  *ngIf="lot.reservable" [style.background]="lightblue">{{lot.name}}</md-grid-tile>
+                  </ng-container>
+                    <md-grid-tile></md-grid-tile>
+                  </md-grid-list>
+                  </div>
+                </div>
+                
             </md-card>
         </div>
     </div>
