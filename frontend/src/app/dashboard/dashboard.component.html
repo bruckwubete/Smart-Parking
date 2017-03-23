@@ -1,21 +1,4 @@
 
-
-<md-sidenav-container  fullscreen>
-  <md-sidenav #sidenav mode="side" opened="true">
-    <!-- sidenav content -->
-    <md-list>
-     <md-list-item (click) = "navigate(pepper)" (mouseover) = "mouseOver1 = true" (mouseleave) = "mouseOver1 = false" 
-                   [ngClass]="{smart_parking_menu_list_item : mouseOver1 || clicked1}"> <span fxFlex="5"></span> Pepper </md-list-item>
-  
-     <md-list-item (mouseover) = "mouseOver2 = true" (mouseleave) = "mouseOver2 = false" 
-                   [ngClass]="{smart_parking_menu_list_item : mouseOver2 || clicked2}"> <span fxFlex="5"></span> Salt </md-list-item>
-    
-     <md-list-item (mouseover) = "mouseOver3 = true" (mouseleave) = "mouseOver3 = false" 
-                   [ngClass]="{smart_parking_menu_list_item : mouseOver3 || clicked3}"> <span fxFlex="5"></span> Paprika </md-list-item>
-    
-    </md-list>
-  </md-sidenav>
-
   <!-- primary content -->
 
     <div fxLayout="row" class="component_dashboard">
@@ -26,35 +9,58 @@
     <div fxLayout="column" fxLayoutAlign="center" fxFlexAlign="center" class="parking_lot">
         <div fxLayout="row" fxLayoutAlign="center center">
             <md-card fxFlex="75" class="parking_lot_card">
-                <div fxLayout="row" fxLayoutAlign="center center">
-                    <form class="example-form">
-                      <md-input-container>
-                        <input mdInput placeholder="Search">
+              <md-card fxLayout="row"  fxFlexFill>
+                <div fxLayout="row" fxLayoutAlign="center" fxFlex="90">
+                    <form class="example-form" fxFlexFill fxLayout="row">
+                      <md-icon>search</md-icon>
+                      <md-input-container fxFlexFill>
+                        <input mdInput placeholder="Search" [(ngModel)] = "searchTerm" (ngModelChange) = "search()" name="sp_search_input">
                       </md-input-container>
                     </form>
                 </div>
                 
+                <md-button-toggle-group #group="mdButtonToggleGroup" class="sp_no_boxshadow" (change)="toggled()">
+                  <md-button-toggle value="center">
+                    <md-icon>format_align_center</md-icon>
+                  </md-button-toggle>
+                  <md-button-toggle value="right">
+                    <md-icon>format_align_right</md-icon>
+                  </md-button-toggle>
+                </md-button-toggle-group>
+              </md-card>
+              <br>
+              
+              
+                
                 <md-grid-list cols="18" rowHeight="150">
                   <md-grid-tile></md-grid-tile> 
                   <ng-container *ngFor="let lot of parking_spots; let i = index">
-                    <md-grid-tile colspan="2" [style.background]="lightblue" *ngIf="!lot.reservable">{{lot.name}}</md-grid-tile>
+                    <md-grid-tile colspan="2" [style.background]="getColor(lot)" *ngIf="!lot.reservable">{{lot.name}}</md-grid-tile>
                   </ng-container>
                 </md-grid-list>
-                <div fxFlex>
-                  
+                <div fxFlex *ngIf="view">
                   <div fxFlex="12" fxFlexOffset="84">
                    <md-grid-list cols="1" rowHeight="150" rowspan="1">
                     <md-grid-tile></md-grid-tile>
                     <ng-container *ngFor="let lot of parking_spots">
-                    <md-grid-tile  *ngIf="lot.reservable" [style.background]="lightblue">{{lot.name}}</md-grid-tile>
+                    <md-grid-tile (click)="openDialog(lot)"  *ngIf="lot.reservable" [style.background]="getColor(lot)">{{lot.name}}</md-grid-tile>
                   </ng-container>
                     <md-grid-tile></md-grid-tile>
                   </md-grid-list>
                   </div>
                 </div>
+                <div *ngIf="!view">
+                  <br>
+                  <md-grid-list cols="18" rowHeight="150">
+                    <md-grid-tile></md-grid-tile> 
+                    <ng-container *ngFor="let lot of parking_spots; let i = index">
+                      <md-grid-tile  (click)="openDialog(lot)" colspan="2" [style.background]="getColor(lot)" *ngIf="lot.reservable">{{lot.name}}</md-grid-tile>
+                    </ng-container>
+                  </md-grid-list>
+                </div>
+                
+                
                 
             </md-card>
         </div>
     </div>
-    <button md-button (click)="sidenav.toggle()">Sidenav Toggle</button>
-</md-sidenav-container>

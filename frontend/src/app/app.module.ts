@@ -10,17 +10,24 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Angular2TokenService, A2tUiModule } from 'angular2-token';
+import { DialogResultExampleDialog } from './dashboard/dashboard.component';
+import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
+
+import {LetterAvatarDirective} from '../assets/directives/letter-avatar.directive';
+import { SpDialogComponentComponent } from './sp-dialog-component/sp-dialog-component.component';
+import { SpUserProfileComponent } from './sp-user-profile/sp-user-profile.component';
+
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'parking_lot',
     component: DashboardComponent,
     data: { title: 'Heroes List' }
+  },
+  { path: 'user',
+    component: SpUserProfileComponent,
   }
-  /*{ path: '',
-    redirectTo: '/parking_lot',
-    pathMatch: 'full'
-  }*/
   //{ path: '**', component: AppComponent }
 ];
 
@@ -31,18 +38,24 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    LetterAvatarDirective,
+    DialogResultExampleDialog,
+    SpDialogComponentComponent,
+    SpUserProfileComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     FlexLayoutModule,
-    MaterialModule,
+    MaterialModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    A2tUiModule
+    A2tUiModule,
+    Ng2DatetimePickerModule
   ],
   providers: [Angular2TokenService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogResultExampleDialog]
 })
 export class AppModule { }

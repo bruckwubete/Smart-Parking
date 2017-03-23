@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import {Angular2TokenService } from 'angular2-token';
 import {Observable} from 'rxjs/Rx';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,10 @@ import {Observable} from 'rxjs/Rx';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
-  public books;
+  router;
   fullImagePath: string;
-  constructor(private http: Http, private _tokenService : Angular2TokenService) {
-    //http.get('https://smart-parking-bruck.c9users.io:8081/books')
-      //  .subscribe(res => this.books = res.json());
-        
-    //this.fullImagePath = './component_dashboard.jpg'
+  constructor(private http: Http, private _tokenService : Angular2TokenService, r: Router) {
+     this.router = r;
      this._tokenService.init({
         apiBase:                    'https://smart-parking-bruck.c9users.io:8081',
         apiPath:                    'auth',
@@ -40,5 +37,28 @@ export class AppComponent {
             }
         }
     });
+    
+    
   }
+  
+   public avatarDataCircle1: any = {
+        size: 200,
+//        background: '#F39C12', // by default it will produce dynamic colors
+        fontColor: '#FFFFFF',
+        border: "2px solid #d3d3d3",
+        isSquare: false,
+        text: "B J"
+    };
+    
+    
+   navigate(input){
+    if(input == 'user'){
+      this.router.navigate(['/user']);
+    }else if(input == 'parking_lot'){
+      this.router.navigate(['/parking_lot']);
+    }else if (input == 'sign_out'){
+      
+    }
+   }
+    
 }

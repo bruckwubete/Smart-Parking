@@ -1,0 +1,43 @@
+<div fxFlex="90">
+<!--<md-grid-list cols="1" rows="3" fxFlex="35">
+  <md-grid-tile  style.background="ge">{{parking_spot.name}}</md-grid-tile>
+</md-grid-list>-->
+<button (click)="dialogRef.close()" fxFlexOffset="100" md-mini-fab><md-icon>close</md-icon></button>
+<p>
+  <strong>Name:</strong>
+  {{parking_spot.name}}
+</p>
+
+<p>
+  <strong>Occupied:</strong>
+  {{parking_spot.occupied}}
+</p>
+
+<p>
+  <strong>Reservable:</strong>
+   {{parking_spot.reservable}}
+</p>
+
+<p>
+  <strong>Reserved:</strong>
+   {{parking_spot.reserved}}
+</p>
+<md-input-container>
+    <input mdInput
+          [(ngModel)]="from_time"
+          ng2-datetime-picker
+          date-format="MM/DD/YYYY HH:mm"
+          parse-format="YYYY-MM-DD HH:mm:ss" placeholder="From Time"/>
+</md-input-container>
+
+<md-input-container>
+    <input mdInput
+          [(ngModel)]="to_time"
+          ng2-datetime-picker
+          date-format="MM/DD/YYYY HH:mm"
+          parse-format="YYYY-MM-DD HH:mm:ss" placeholder="To Time"/>
+</md-input-container>
+<div fxFlexAlign="row">
+    <button md-raised-button md-button>RESERVE</button>
+</div>
+</div>

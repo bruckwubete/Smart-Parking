@@ -1,2 +1,22 @@
+<md-sidenav-container  fullscreen>
+  <md-sidenav #sidenav mode="side" opened="true">
+    <!-- sidenav content -->
+    <md-list fxLayout="column" fxLayoutAlign="center center" >
+     <avatar  [avatardata]="avatarDataCircle1"></avatar>
+     <br>
+     <hr>
+     <md-list-item fxFlexFill fxLayoutAlign="center center" (mouseover) = "mouseOver1 = true" (mouseleave) = "mouseOver1 = false" 
+                   [ngClass]="{smart_parking_menu_list_item : mouseOver1 || clicked1}" (click)="navigate('parking_lot')"><md-icon>local_parking</md-icon> </md-list-item>
+  
+     <md-list-item fxFlexFill fxLayoutAlign="center center" (mouseover) = "mouseOver2 = true" (mouseleave) = "mouseOver2 = false" 
+                   [ngClass]="{smart_parking_menu_list_item : mouseOver2 || clicked2}" (click)="navigate('user')"> <md-icon>person</md-icon></md-list-item>
+    
+     <md-list-item fxFlexFill fxLayoutAlign="center center" (mouseover) = "mouseOver3 = true" (mouseleave) = "mouseOver3 = false" 
+                   [ngClass]="{smart_parking_menu_list_item : mouseOver3 || clicked3}" (click)="navigate('signout')"> <md-icon>lock</md-icon></md-list-item>
+    
+    </md-list>
+  </md-sidenav>
+        <router-outlet></router-outlet>
+        <button md-button (click)="sidenav.toggle()"><md-icon>menu</md-icon></button>
+</md-sidenav-container>
 
-<router-outlet></router-outlet>
