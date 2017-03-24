@@ -18,6 +18,8 @@ import { SpDialogComponentComponent } from './sp-dialog-component/sp-dialog-comp
 import { SpUserProfileComponent } from './sp-user-profile/sp-user-profile.component';
 
 
+import {SpUserServiceService} from './sp-user-profile/sp-user-service.service';
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   {

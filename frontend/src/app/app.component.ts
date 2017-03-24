@@ -2,7 +2,10 @@ import { Component, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import {Angular2TokenService } from 'angular2-token';
 import {Observable} from 'rxjs/Rx';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationStart, Event as NavigationEvent  } from '@angular/router';
+import { Location } from '@angular/common';
+
+import {SpUserServiceService} from './sp-user-profile/sp-user-service.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +14,33 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AppComponent {
   router;
-  fullImagePath: string;
-  constructor(private http: Http, private _tokenService : Angular2TokenService, r: Router) {
+  state;
+  user;
+  route;
+  state_in_transition = true;
+  user_signed_in = false;
+  constructor(private http: Http, private _tokenService : Angular2TokenService, r: Router, private location: Location) {
      this.router = r;
+     this.router.events
+        .filter(event => event instanceof NavigationStart)
+        .subscribe((event:Event) => {
+           this.user = this._tokenService.currentUserData;
+           if(!this._tokenService.userSignedIn()){
+              this.user_signed_in = false; 
+              if((this.location.path() != '/session/sign-in') && this.state_in_transition){
+                this.state_in_transition = false; 
+                this.router.navigate(['/session/sign-in']);
+              }
+           }else{
+               this.user_signed_in = true; 
+           }
+        });
+  }
+  
+  ngOnInit() {
+     if(this._tokenService.userSignedIn()){
+         this.user_signed_in = true;
+     }
      this._tokenService.init({
         apiBase:                    'https://smart-parking-bruck.c9users.io:8081',
         apiPath:                    'auth',
@@ -37,8 +64,6 @@ export class AppComponent {
             }
         }
     });
-    
-    
   }
   
    public avatarDataCircle1: any = {
@@ -52,13 +77,18 @@ export class AppComponent {
     
     
    navigate(input){
+    this.state = input;
     if(input == 'user'){
       this.router.navigate(['/user']);
     }else if(input == 'parking_lot'){
       this.router.navigate(['/parking_lot']);
     }else if (input == 'sign_out'){
-      
+      this._tokenService.signOut().subscribe(res => this.signUserOut(res.json()));
     }
+   }
+   
+   signUserOut(res){
+       this.router.navigate(['/session/sign-in']);
    }
     
 }

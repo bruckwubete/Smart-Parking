@@ -1,3 +1,26 @@
-<p>
-  sp-user-profile works!
-</p>
+<div fxLayout="row" fxLayoutAlign="center none" >
+    <md-card fxLayout="column"  fxFlexAlign="center" fxFlex="55" class="parking_lot_card">
+        <h3>Smart Parking User Profile</h3>
+        <div fxLayout="row">
+            <div>
+                <avatar  [avatardata]="avatarDataCircle1"></avatar>
+            </div>
+            <div fxFlexOffset="5">
+                <p>
+                  <strong>Username:</strong>
+                    {{user.username}}
+                </p>
+                
+                <p>
+                  <strong>Email:</strong>
+                    {{user.email}}
+                </p>
+                
+                <p>
+                  <strong>Barcode:</strong>
+                </p>
+                <img src="https://smart-parking-bruck.c9users.io:8081/qr_codes/{{user._id.$oid}}.png"/>
+            </div>
+        </div>
+    </md-card>
+</div>
