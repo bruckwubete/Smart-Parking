@@ -10,7 +10,7 @@ class QrCodesController < ApplicationController
   # GET /qr_codes/1
   # GET /qr_codes/1.json
   def show
-    @data = Base64.encode64(File.read(@qr_code.barcode_path  + '.png')).gsub("\n", '')
+    @data = Base64.encode64(File.read(@qr_code.barcode_path)).gsub("\n", '')
   end
 
   # GET /qr_codes/new

@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   resources :reservations, :defaults => { :format => :json }
-  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
+  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]#, controllers: { sessions: "overrides/sessions" }
+  
+  get '/user/:user_id/reservations', to: 'reservations#get_user_reservations', :defaults => {:format => :json}
+  
   resources :parking_lots, :defaults => { :format => :json }
-  resources :parking_spots, :defaults => { :format => :json }
+  resources :parking_spots, :defaults => { :format => :json } do 
+    get '/reservations', to: 'reservations#get_parking_spot_reservations'
+  end 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

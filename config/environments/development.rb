@@ -22,6 +22,9 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
   
   #config.action_mailer.default_url_options = { host: 'localhost', port: 8080 }
+  config.action_mailer.asset_host = 'http://smart-parking-bruck.c9users.io:8081'
+
+  config.action_controller.asset_host = 'http://smart-parking-bruck.c9users.io:8081'
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

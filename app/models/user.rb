@@ -15,7 +15,7 @@ class User
   include Mongoid::Document
   #include DeviseTokenAuth::Concerns::User
   include Mongoid::Timestamps::Short
-  has_one :qr_code
+  has_many :reservations
   validates_uniqueness_of :email, :username
   
   # Include default devise modules. Others available are:
@@ -24,26 +24,6 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
          
   include DeviseTokenAuth::Concerns::User
-  
-  after_create do
-      @qr_code = QrCode.new
-       barcode = RQRCode::QRCode.new(self.id.to_s)
-       png = barcode.as_png(
-           resize_gte_to: false,
-           resize_exactly_to: false,
-           fill: 'white',
-           color: 'black',
-           size: 500,
-           border_modules: 4,
-           module_px_size: 10,
-           file: nil # path to write
-           )
-       @qr_code.barcode_path =  'public/qr_codes/' + self.id.to_s
-       @qr_code.save!
-       self.qr_code = @qr_code
-       self.save!
-       File.open( @qr_code.barcode_path + '.png', 'wb') {|f| f.write png }
-  end
 
 
   ## Database authenticatable
@@ -85,4 +65,9 @@ class User
   
   ## User Info
   field :username, type: String, default: ""
+  
+  def token_validation_response
+      UserSerializer.root = false
+      UserSerializer.new(self).as_json
+  end
 end

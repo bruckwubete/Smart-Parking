@@ -24,13 +24,15 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
-                                         
-    from_time = Time.new(reservation_params[:from][:year], reservation_params[:from][:month], reservation_params[:from][:day], 
+    from_time = Time.find_zone(Time.zone).local(reservation_params[:from][:year], reservation_params[:from][:month], reservation_params[:from][:day], 
                                          reservation_params[:from][:hour], reservation_params[:from][:minute], reservation_params[:from][:second])
     
-    to_time = Time.new(reservation_params[:to][:year], reservation_params[:to][:month], reservation_params[:to][:day], 
+    to_time = Time.find_zone(Time.zone).local(reservation_params[:to][:year], reservation_params[:to][:month], reservation_params[:to][:day], 
                                          reservation_params[:to][:hour], reservation_params[:to][:minute], reservation_params[:to][:second])
-    raise "ERROR: cannot book past time" if Time.now > from_time || from_time >= to_time
+                                         
+
+    raise "ERROR: cannot book past time" if Time.zone.now > from_time || from_time >= to_time
+   
     @reservation = Reservation.new(user_id: reservation_params[:user_id],
                                    parking_spot_id: reservation_params[:parking_spot_id],
                                    from: from_time,
@@ -69,6 +71,16 @@ class ReservationsController < ApplicationController
       format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def get_parking_spot_reservations
+    @reservations = ParkingSpot.find(params[:parking_spot_id]).reservations
+    render 'reservations/index'
+  end
+  
+  def get_user_reservations
+    @reservations = User.find(params[:user_id]).reservations
+    render 'reservations/index'
   end
 
   private

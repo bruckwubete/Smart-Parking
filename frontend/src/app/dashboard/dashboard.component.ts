@@ -39,16 +39,16 @@ export class DialogResultExampleDialog {
             "month":from_date_fields[0],
             "day":from_date_fields[1],
             "hour":from_time_fileds[0],
-            "minutes":from_time_fileds[1],
-            "seconds":0
+            "minute":from_time_fileds[1],
+            "second":0
       },
       "to": {
             "year":to_date_fields[2],
             "month":to_date_fields[0],
             "day":to_date_fields[1],
             "hour":to_time_fileds[0],
-            "minutes":to_time_fileds[1],
-            "seconds":0
+            "minute":to_time_fileds[1],
+            "second":0
       }
     }
     

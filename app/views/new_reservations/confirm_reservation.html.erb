@@ -4,16 +4,19 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>NEW to example.com, <%= @user.id %></h1>
-    <h1>To:</h1><h1>NEW to example.com, <%= @reservation.to %></h1>
-    <h1>From:</h1><h1>NEW to example.com, <%= @reservation.from %></h1>
+    <h3>Hello, <%= @user.id %></h1>
+    <p>You have successfully made a reservation. Here are your reservation details: <br></P>
+
+    <hr>
+    <h4>From:</h4><h1><%= @reservation.from %></h1>
+    <h4>To:</h4><h1><%= @reservation.to %></h1>
     <p>
-      You have successfully signed up to example.com,
-      your username is:>.<br>
+       Please use this barcode at the gates to enter reserved parking section: <br>
     </p>
-    <p>
-      To login to the site, just follow this link: <%= @url %>.
-    </p>
-    <p>Thanks for joining and have a great day!</p>
+    <div class="image">
+      <%= image_tag( @reservation.qr_code.barcode_path.to_s) %>
+    </div>
+    <p>Thanks for reserving and have a great day!<br></p>
+    <p>From the smart parking team</p>
   </body>
 </html>

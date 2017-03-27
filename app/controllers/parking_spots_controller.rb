@@ -4,7 +4,11 @@ class ParkingSpotsController < ApplicationController
   # GET /parking_spots
   # GET /parking_spots.json
   def index
-    @parking_spots = ParkingSpot.all
+    if params[:name]
+      @parking_spots = ParkingSpot.where(name: params[:name])
+    else
+      @parking_spots = ParkingSpot.all
+    end
   end
 
   # GET /parking_spots/1
@@ -69,6 +73,6 @@ class ParkingSpotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def parking_spot_params
-      params.require(:parking_spot).permit(:name, :occupied, :reservable, :reserved)
+      params.permit(:name, :occupied, :reservable, :reserved)
     end
 end

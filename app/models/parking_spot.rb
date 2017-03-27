@@ -1,6 +1,7 @@
 class ParkingSpot
   include Mongoid::Document
   validates_uniqueness_of :name
+  has_many :reservations
   field :name, type: String
   field :occupied, type: Boolean
   field :reservable, type: Boolean

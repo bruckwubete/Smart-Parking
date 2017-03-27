@@ -17,7 +17,7 @@ var DialogResultExampleDialog = (function () {
         console.log(this.from_time);
         var from_fields = (this.from_time.toString()).split(' ', 3);
         var body = {
-            "user_id": 
+            "user_id": "12347"
         };
         var bodyString = JSON.stringify(body); // Stringify payload
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
