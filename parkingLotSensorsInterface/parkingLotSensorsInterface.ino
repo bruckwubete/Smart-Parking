@@ -36,16 +36,12 @@ void loop() {
     if(abs(lotValues[index]-previousLotValues[index])> difference){
       
       //Send Signal to RPI but for now blink a light
-      digitalWrite(lotPins[index], HIGH);
-      Serial.print(index);
-      Serial.print(' ');
-      Serial.print(lotValues[index]);
-      Serial.print(' ');
-      Serial.println(previousLotValues[index]);
-      updateSensorValues();
+     // digitalWrite(lotPins[index], HIGH);
+      Serial.println(index);
+      updateSensorValue(index);
     }else{
       //Nothing to do here
-      digitalWrite(lotPins[index], LOW);
+     // digitalWrite(lotPins[index], LOW);
     }
   }
   
@@ -60,4 +56,8 @@ void updateSensorValues(){
   for(int index=0; index<LENGTH(previousLotValues); index++){
       previousLotValues[index] = lotValues[index];
     }
+}
+
+void updateSensorValue(int index){
+  previousLotValues[index] = lotValues[index];
 }
