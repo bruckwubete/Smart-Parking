@@ -6,13 +6,16 @@
      <br>
      <hr>
      <md-list-item fxFlexFill fxLayoutAlign="center center" (mouseover) = "mouseOver1 = true" (mouseleave) = "mouseOver1 = false" 
-                   [ngClass]="{sp_menu_hover: mouseOver1, sp_menu_cliked: state == 'parking_lot'}" (click)="navigate('parking_lot')"><md-icon>local_parking</md-icon> </md-list-item>
+                   [ngClass]="{sp_menu_hover: mouseOver1, sp_menu_cliked: state == 'parking_lot', sp_menu_item: true }" (click)="navigate('parking_lot')"><md-icon>local_parking</md-icon> </md-list-item>
+    
+     <md-list-item fxFlexFill fxLayoutAlign="center center" (mouseover) = "mouseOver4 = true" (mouseleave) = "mouseOver4 = false" 
+                   [ngClass]="{sp_menu_hover: mouseOver4, sp_menu_cliked: state == 'reservations', sp_menu_item: true }" (click)="navigate('reservations')"><md-icon>format_indent_increase</md-icon> </md-list-item>
   
      <md-list-item fxFlexFill fxLayoutAlign="center center" (mouseover) = "mouseOver2 = true" (mouseleave) = "mouseOver2 = false" 
-                   [ngClass]="{sp_menu_hover : mouseOver2, sp_menu_cliked: state == 'user'}" (click)="navigate('user')"> <md-icon>person</md-icon></md-list-item>
+                   [ngClass]="{sp_menu_hover : mouseOver2, sp_menu_cliked: state == 'user', sp_menu_item: true }" (click)="navigate('user')"> <md-icon>person</md-icon></md-list-item>
     
      <md-list-item fxFlexFill fxLayoutAlign="center center" (mouseover) = "mouseOver3 = true" (mouseleave) = "mouseOver3 = false" 
-                   [ngClass]="{sp_menu_hover : mouseOver3}" (click)="navigate('sign_out')"> <md-icon>lock</md-icon></md-list-item>
+                   [ngClass]="{sp_menu_hover : mouseOver3, sp_menu_item: true }" (click)="navigate('sign_out')"> <md-icon>lock</md-icon></md-list-item>
     
     </md-list>
   </md-sidenav>

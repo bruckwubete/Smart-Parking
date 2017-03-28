@@ -5,8 +5,6 @@ import {Observable} from 'rxjs/Rx';
 import { Router, ActivatedRoute, NavigationStart, Event as NavigationEvent  } from '@angular/router';
 import { Location } from '@angular/common';
 
-import {SpUserServiceService} from './sp-user-profile/sp-user-service.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,7 +12,7 @@ import {SpUserServiceService} from './sp-user-profile/sp-user-service.service';
 })
 export class AppComponent {
   router;
-  state;
+  state = 'parking_lot';
   user;
   route;
   state_in_transition = true;
@@ -82,6 +80,8 @@ export class AppComponent {
       this.router.navigate(['/user']);
     }else if(input == 'parking_lot'){
       this.router.navigate(['/parking_lot']);
+    }else if (input == 'reservations'){
+       this.router.navigate(['/reservations']); 
     }else if (input == 'sign_out'){
       this._tokenService.signOut().subscribe(res => this.signUserOut(res.json()));
     }
