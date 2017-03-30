@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TableData } from './table-data';
 import { NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective } from 'ng2-table/ng2-table';
+import { Http, Response, Headers, RequestOptions} from '@angular/http';
+import {Angular2TokenService } from 'angular2-token';
 
 @Component({
   selector: 'app-sp-user-reservations',
@@ -37,13 +39,31 @@ export class SpUserReservationsComponent implements OnInit {
   };
 
   private data:Array<any> = TableData;
+  
+  reservations;
+  user;
 
-  public constructor() {
+  public constructor(private http: Http, public _tokenService : Angular2TokenService) {
     this.length = this.data.length;
   }
 
   public ngOnInit():void {
     this.onChangeTable(this.config);
+    this.user = this._tokenService.currentUserData;
+    console.log(this.user);
+    this.getReservations();
+  }
+  
+  getReservations(){
+      this.http.get('https://smart-parking-bruck.c9users.io:8081/users/'+ this.user._id.$oid +'/reservations')
+          ///.subscribe(function(response) { this.parking_spots = response.json(); this.parking_spots_copy = this.parking_spots; console.log(this.parking_spots);},
+          //           function(error){},
+           //          function(){});
+          .subscribe(res => this.update(res.json()));
+  }
+  
+  update(res){
+    this.reservations = res;
   }
 
   public changePage(page:any, data:Array<any> = this.data):Array<any> {
@@ -137,5 +157,7 @@ export class SpUserReservationsComponent implements OnInit {
   public onCellClick(data: any): any {
     console.log(data);
   }
+  
+  
 
 }

@@ -16,7 +16,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
     api_key: 'key-29796a58b2ad1ef4247fcfdbd8289c27',
-    domain: 'sandbox35501bb74b754c4aa6fe071f94963720.mailgun.org'
+    domain: 'sandbox35501bb74b754c4aa6fe071f94963720.mailgun.org' 
   }
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

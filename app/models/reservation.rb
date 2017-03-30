@@ -83,6 +83,5 @@ class Reservation
     @parking_spot = ParkingSpot.find(self.parking_spot_id)
     @parking_spot.reserved = true
     @parking_spot.save!
-    puts @parking_spot.as_json
   end
 end

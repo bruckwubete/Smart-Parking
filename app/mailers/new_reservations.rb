@@ -1,5 +1,5 @@
 class NewReservations < ApplicationMailer
-    
+    default from: 't4@smartparking.com'
     def confirm_reservation(user, reservation)
         @user = user
         @reservation = reservation

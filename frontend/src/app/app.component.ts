@@ -53,7 +53,7 @@ export class AppComponent {
         
         registerAccountPath:        '',
         deleteAccountPath:          '',
-        registerAccountCallback:    'https://smart-parking-bruck.c9users.io:8080/session/sign-in',
+        registerAccountCallback:    'https://smart-parking-bruck.c9users.io:8080/parking_lot',
 
         globalOptions: {
             headers: {

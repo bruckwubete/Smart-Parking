@@ -13,17 +13,18 @@ class User
 
   end
   include Mongoid::Document
-  #include DeviseTokenAuth::Concerns::User
   include Mongoid::Timestamps::Short
   has_many :reservations
   validates_uniqueness_of :email, :username
+  #attr_accessible confirm_success_url
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username, :email]
          
   include DeviseTokenAuth::Concerns::User
+  after_create :send_confirmation_email, if: -> { !Rails.env.test? && User.devise_modules.include?(:confirmable) }
 
 
   ## Database authenticatable
@@ -69,5 +70,9 @@ class User
   def token_validation_response
       UserSerializer.root = false
       UserSerializer.new(self).as_json
+  end
+  
+   def send_confirmation_email
+    self.send_confirmation_instructions
   end
 end
