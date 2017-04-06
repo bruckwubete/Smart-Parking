@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="center none" >
     <md-card fxLayout="column"  fxFlexAlign="center" fxFlex="55" class="parking_lot_card">
-        <h3>Smart Parking User Reservations</h3>
+        <h3>Smart Parking User Reservations for {{user.username}}</h3>
       <!--  <div class="row">
   <div class="col-md-4">
     <input *ngIf="config.filtering" placeholder="Filter all columns"
@@ -27,6 +27,7 @@
             (numPages)="numPages = $event">
 </pagination>
 <pre *ngIf="config.paging" class="card card-block card-header">Page: {{page}} / {{numPages}}</pre>-->
+  <strong *ngIf="reservations?.length == 0"> You currently have no reservations </strong>
   <expandable-list>
     <expandable-list-item *ngFor="let reservation of reservations; let i=index">
       <span title>{{i+1}}</span>

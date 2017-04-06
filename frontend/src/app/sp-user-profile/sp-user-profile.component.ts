@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Angular2TokenService } from 'angular2-token';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sp-user-profile',
@@ -8,10 +9,19 @@ import {Angular2TokenService } from 'angular2-token';
 })
 export class SpUserProfileComponent implements OnInit {
   user;
-  constructor(private _tokenService : Angular2TokenService) { }
+  router;
+  constructor(private _tokenService : Angular2TokenService, private r: Router) {
+    this.router = r;
+    
+  }
 
   ngOnInit() {
     this.user = this._tokenService.currentUserData;
+    if(this.user){
+      this.avatarDataCircle1.text = this.user.username;
+    }else{
+      this.router.navigate(['/session/sign-in']);
+    }
   }
   
   public avatarDataCircle1: any = {

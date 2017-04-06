@@ -9,7 +9,7 @@
 #parking spots seeds
 
    #seeding reserved parking spots
-    ParkingSpot.create(name: "R1", reservable: true, reserved: false, occupied: true)
+    ParkingSpot.create(name: "R1", reservable: true, reserved: false, occupied: false)
     ParkingSpot.create(name: "R2", reservable: true, reserved: false, occupied: false)
     ParkingSpot.create(name: "R3", reservable: true, reserved: false, occupied: false)
     ParkingSpot.create(name: "R4", reservable: true, reserved: false, occupied: false)

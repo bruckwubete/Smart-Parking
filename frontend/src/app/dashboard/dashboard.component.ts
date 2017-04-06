@@ -113,15 +113,15 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getParkingSpots();
-    //let timer = Observable.timer(2000,1000);
-   //  timer.subscribe(t=> {
-   //     this.getParkingSpots();
-   // });
+    let timer = Observable.timer(2000,3000);
+    timer.subscribe(t=> {
+      this.getParkingSpots();
+    });
   }
   
   getParkingSpots(){
       this.http.get('https://smart-parking-bruck.c9users.io:8081/parking_spots')
-          ///.subscribe(function(response) { this.parking_spots = response.json(); this.parking_spots_copy = this.parking_spots; console.log(this.parking_spots);},
+          //.subscribe(function(response) { this.parking_spots = response.json(); this.parking_spots_copy = this.parking_spots; console.log(this.parking_spots);},
           //           function(error){},
            //          function(){});
           .subscribe(res => this.update(res.json()));

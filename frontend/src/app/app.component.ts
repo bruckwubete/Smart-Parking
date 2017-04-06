@@ -22,22 +22,30 @@ export class AppComponent {
      this.router.events
         .filter(event => event instanceof NavigationStart)
         .subscribe((event:Event) => {
-           this.user = this._tokenService.currentUserData;
+            this._tokenService.validateToken().subscribe(
+                res =>      this.updateUser(res.json()),
+                error =>    this.userNotLoggedIn(error.json())
+            );
            if(!this._tokenService.userSignedIn()){
-              this.user_signed_in = false; 
-              if((this.location.path() != '/session/sign-in') && this.state_in_transition){
-                this.state_in_transition = false; 
-                this.router.navigate(['/session/sign-in']);
-              }
+              
            }else{
                this.user_signed_in = true; 
            }
         });
-  }
+    
+  }NavigationEvent
   
   ngOnInit() {
      if(this._tokenService.userSignedIn()){
          this.user_signed_in = true;
+         this.user = this._tokenService.currentUserData;
+           if(this.user){
+              this.avatarDataCircle1.text = this.user.username;
+              console.log("hger");
+            }else{
+                 console.log("hger1");
+                this.router.navigate(['/session/sign-in']);
+            }
      }
      this._tokenService.init({
         apiBase:                    'https://smart-parking-bruck.c9users.io:8081',
@@ -70,7 +78,7 @@ export class AppComponent {
         fontColor: '#FFFFFF',
         border: "2px solid #d3d3d3",
         isSquare: false,
-        text: "B J"
+        text: "S P"
     };
     
     
@@ -89,6 +97,22 @@ export class AppComponent {
    
    signUserOut(res){
        this.router.navigate(['/session/sign-in']);
+   }
+   
+   updateUser(user){
+       console.log(user);
+       this.avatarDataCircle1.text = user.data.username;
+       this.user_signed_in = true;
+       if((this.location.path() == '/session/sign-in')){
+        this.router.navigate(['/parking_lot']);
+      }
+   }
+   userNotLoggedIn(error){
+       this.user_signed_in = false; 
+      if((this.location.path() != '/session/sign-in') && (this.location.path() != '/session/sign-up') && 
+         (this.location.path() != '/session/reset-password')){
+        this.router.navigate(['/session/sign-in']);
+      }
    }
     
 }

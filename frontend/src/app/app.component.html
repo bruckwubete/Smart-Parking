@@ -2,7 +2,7 @@
   <md-sidenav #sidenav mode="side" opened="true" [ngClass]="{sp_hide_element : !user_signed_in}">
     <!-- sidenav content -->
     <md-list fxLayout="column" fxLayoutAlign="center center">
-     <avatar  [avatardata]="avatarDataCircle1"></avatar>
+     <div id="avatar"></div>
      <br>
      <hr>
      <md-list-item fxFlexFill fxLayoutAlign="center center" (mouseover) = "mouseOver1 = true" (mouseleave) = "mouseOver1 = false" 

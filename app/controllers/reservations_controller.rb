@@ -91,6 +91,6 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.permit(:user_id, :parking_spot_id, from: [:year,:month,:day,:hour,:minute,:second], to: [:year,:month,:day,:hour,:minute,:second])
+      params.permit(:user_id, :expired, :parking_spot_id, from: [:year,:month,:day,:hour,:minute,:second], to: [:year,:month,:day,:hour,:minute,:second])
     end
 end
