@@ -10,6 +10,8 @@ Smart Parking is a computer systems solution to today's urban area parking lot p
 
 ### Installation
 
+![](frontend/src/assets/images/component_dashboard.jpg?raw=true)
+
 
 ### Development
 
