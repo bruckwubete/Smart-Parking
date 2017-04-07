@@ -8,7 +8,13 @@
  * @author Bruck Wubete
 */
 
+
 #define LENGTH(s) (sizeof(s)/sizeof(*s))  
+
+
+//We are using the lower two pins because we only go one 5v pin on the nano
+boolean enableServo = true;
+
 int lotPins[8] = {0,1,2,3,4,5,6,7};
 int lotValues[8] = {0,0,0,0,0,0,0,0};
 int previousLotValues[8] = {0,0,0,0,0,0,0,0};
@@ -21,9 +27,8 @@ unsigned long lastUpdateTime;
 void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
-  for(int index=0; index<LENGTH(lotPins); index++){
-    pinMode(lotPins[index], OUTPUT);
-  }
+
+
 }
 
 // the loop routine runs over and over again forever:
