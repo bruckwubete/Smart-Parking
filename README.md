@@ -8,11 +8,54 @@ Smart Parking is a computer systems solution to today's urban area parking lot p
   - Provide an easy to use user friendly interface
   - Provide elevated access to primium users into the reserved section (see below)
 
-### Installation
+### Running the application
 
-![](frontend/src/assets/images/component_dashboard.jpg?raw=true)
+The Smart Parking project is made up of three components
+  - The smart parking board (not available here)
+  - The ruby on rails server 
+  - The Angular2 front end
+  - The Adroid mobile application 
+  
+#### Running the ruby on rails server 
+To run the ruby on rails server you need [Ruby](https://ruby-lang.org/) installed
+```sh
+git clone https://github.com/bruckwubete/Smart-Parking.git
+cd Smart-Parking
+```
+You'll need to install the all dependencies for the smart parking app so run 
 
+```sh
+bundle install 
+```
 
+To run the app on a certain port, run the following command where <port> is the 
+port you want to run it on   
+
+```sh
+rails s -b 0.0.0.0 --port <port> 
+```
+
+#### Running the Angular2 frontend
+To run the ruby on rails server you need [Node.js](https://nodejs.org/) installed
+Cd into the frontend folder
+```sh
+cd Smart-Parking/frontend
+```
+You'll need to install the all dependencies for the smart parking frontend app so run 
+
+```sh
+npm install 
+```
+
+To run the frontend app on a certain port, run the following command where <port> is the 
+port you want to run it on   
+
+```sh
+ng serve --host 0.0.0.0 --port <port> 
+```
+finally if the previous commands worked fine go to http://localhost:<port>
+and you should find something that looks like: 
+![](frontend/src/assets/images/webapp_screenshot.jpg.png?raw=true)
 ### Development
 
 Want to contribute?
