@@ -30,8 +30,9 @@ class ReservationsController < ApplicationController
     to_time = Time.find_zone(Time.zone).local(reservation_params[:to][:year], reservation_params[:to][:month], reservation_params[:to][:day], 
                                          reservation_params[:to][:hour], reservation_params[:to][:minute], reservation_params[:to][:second])
                                          
-
-    raise "ERROR: cannot book past time" if Time.zone.now > from_time || from_time >= to_time
+                                         
+    raise "ERROR: cannot book past current time" if Time.zone.now > from_time
+    raise "ERROR: to time earlier that from time" if from_time > to_time 
    
     @reservation = Reservation.new(user_id: reservation_params[:user_id],
                                    parking_spot_id: reservation_params[:parking_spot_id],
@@ -93,4 +94,4 @@ class ReservationsController < ApplicationController
     def reservation_params
       params.permit(:user_id, :expired, :parking_spot_id, from: [:year,:month,:day,:hour,:minute,:second], to: [:year,:month,:day,:hour,:minute,:second])
     end
-end
+  end

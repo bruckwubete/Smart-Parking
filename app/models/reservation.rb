@@ -49,7 +49,12 @@ class Reservation
      @qr_code.save!
      self.qr_code = @qr_code
      self.save!
-     File.open( 'public' + @qr_code.barcode_path, 'wb') {|f| f.write png }
+     
+     begin
+         File.open( 'public' + @qr_code.barcode_path, 'wb') {|f| f.write png }
+     rescue
+        raise "ERROR: Failed to open barcode with path" + @qr_code.barcode_path
+     end
      
      mark_parking_spot_as_reserved
      
