@@ -2,10 +2,10 @@
 
 [![Gem Version](https://badge.fury.io/rb/rails.svg)](https://badge.fury.io/rb/rails) [![npm version](https://badge.fury.io/js/angular.svg)](https://badge.fury.io/js/angular)
 
-Smart Parking is a computer systems solution to today's urban area parking lot problems. This proects aims to:
+Smart Parking is a computer systems solution to today's urban area parking lot problems. This project aims to:
 
-  - Reduce time and ga wasted driving around a parking lot looking for an available spot
-  - Provide an easy to use user friendly interface
+  - Reduce time and gas wasted driving around a parking lot looking for an available spot
+  - Provide an easy to use, user friendly interface
   - Provide elevated access to primium users into the reserved section (see below)
 
 ### Running the application
